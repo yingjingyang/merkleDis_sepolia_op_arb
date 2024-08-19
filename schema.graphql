@@ -1,0 +1,52 @@
+type Distributor {
+  id: Bytes!
+  totalAmount: BigInt!
+  name: String!
+  message: String!
+  tokenAddress: Bytes!
+  number: BigInt!
+  duration: BigInt!
+  creator: Bytes!
+  creationTimestamp: BigInt!
+  expireTimestamp: BigInt!
+  token: Token
+  refunder: Refund
+  claimers: [Claimer!]! @derivedFrom(field: "distributor")
+  remainToClaim: BigInt! # uint256
+  allClaimed: Boolean!
+  refunded: Boolean!
+  isETH: Boolean!
+  redpacketId: Bytes!
+}
+
+type Claimer {
+  id: Bytes!
+  claimTimestamp: BigInt!
+  distributor: Distributor!
+  index: BigInt!
+  claimer: Bytes!
+  amount: BigInt!
+}
+
+type Lastupdate {
+  id: ID!
+  lastupdateTimestamp: BigInt!
+}
+
+type Refund {
+  id: ID!
+  distributor: Distributor! # bytes32
+  to: Bytes!
+  amount: BigInt!
+  tokenAddress: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+}
+
+type Token {
+  id: ID! # address
+  address: Bytes!
+  symbol: String!
+  name: String!
+  decimals: BigInt!
+}
