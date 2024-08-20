@@ -2,24 +2,24 @@
 name: erc20indexer
 description: ERC-20 indexer
 networks:
-  - id: 1 # Ethereum Mainnet
+  - id: 10 # Ethereum Mainnet
     # op: 10, arbitrum: 42161, scroll: 534352, sepolia: 11155111, zksync-era: 324
-    # start_block: 116593736 # optimism
+    start_block: 124269527 # optimism
     # start_block: 3604423 # scroll
-    # start_block: 184030094 # arbitrum-one
-    start_block: 5164059 # sepolia
+    # start_block: 244769593 # arbitrum-one
+    # start_block: 6535522 # sepolia
     # start_block: 28609914 # zksync-era
     contracts:
       - name: MerkleDistributorFactory
         abi_file_path: abis/MerkleDistributorFactory.json
-        # address: 0xCaEC4528A60ca2c47123D7946179011F8B7A7b41 # optimism
+        address: 0x3fD1AB4577b80f184de4E64C980eBA019b6C6D8E # optimism
         # address: 0x35eca762d594e734e58Fa2838EAA61A359606289 # scroll
-        # address: 0xF5D3668d94dcF4C2cB7bE81AD43857762695BF78 # arbitrum
-        address: 0x4ADE20737690166634a96E1B0524a61051137753 # sepolia
+        # address: 0xA436de894D19Ff26268fCe4350b90fDbb6BB8219 # arbitrum
+        # address: 0xb0B8394c1365D0caE674b3254B1e4A19aAEddc5A # sepolia
         # address: 0x7a532BD262291EeA040A3D61d7BeB3220ff06687 # zksync-era
         handler: src/EventHandlers.ts
         events:
-          - event: DistributorCreated(uint256 total,bytes32 id,string name,string message,address token_address,uint256 number,uint256 duration,address creator,uint256 creation_time)
+          - event: DistributorCreated(uint256 total,bytes32 id,string name,string message,address token_address,uint256 number,uint256 duration,address creator,uint256 creation_time, address distributor)
       - name: MerkleDistributor
         abi_file_path: abis/MerkleDistributor.json
         handler: src/EventHandlers.ts

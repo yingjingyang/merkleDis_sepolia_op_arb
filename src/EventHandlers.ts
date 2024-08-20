@@ -4,36 +4,14 @@
 import {
   MerkleDistributor,
   MerkleDistributorFactory,
-  Distributor,
-  Claimer,
-  Lastupdate,
-  Refund,
 } from "generated";
 
 import Erc20ABI = require("../abis/ERC20.json");
-import MerkleDistributorFactoryABI = require("../abis/MerkleDistributorFactory.json");
 
 import { GetClient } from "./utils/client";
-import { env } from "process";
 
 MerkleDistributorFactory.DistributorCreated.contractRegister(({ event, context }) => {
-  // context.addMerkleDistributor()
-  const chainId = event.chainId
-  let merkleDistributorAddress = ""
-  try{
-    const client = GetClient(chainId);
-
-    merkleDistributorAddress = (await client.readContract({
-      address: event.params.token_address as any,
-      abi: MerkleDistributorFactoryABI,
-      functionName: "redpacket_by_id",
-      args: [event.params.id],
-    })) as string;
-
-  }catch(error){
-    return;
-  }
-  context.addMerkleDistributor(merkleDistributorAddress);
+  context.addMerkleDistributor(event.params.distributor);
 });
 
 MerkleDistributorFactory.DistributorCreated.handlerWithLoader({
@@ -83,20 +61,13 @@ MerkleDistributorFactory.DistributorCreated.handlerWithLoader({
         });
       }
 
-      let merkleDistributorAddress = (await client.readContract({
-        address: event.params.token_address as any,
-        abi: MerkleDistributorFactoryABI,
-        functionName: "redpacket_by_id",
-        args: [event.params.id],
-      })) as string;
-
       let isETHResult = false
       if(event.params.token_address == zeroAddress){
         isETHResult = true
       }
 
       context.Distributor.set({
-        id: merkleDistributorAddress,
+        id: event.params.distributor,
         totalAmount: event.params.total,
         name: event.params.name,
         message: event.params.message,
