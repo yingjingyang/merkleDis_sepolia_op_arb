@@ -6,7 +6,7 @@ export function GetClient(chainId: number) {
     if (chainId == 10) chain = optimism;
     if (chainId == 8453) chain = base;
     if (chainId == 11155111) chain = sepolia;
-    if (chainId == 300) chain = zksync;
+    if (chainId == 324) chain = zksync;
     if (chainId == 534352) chain = scroll; 
     if (chainId == 42161) chain = arbitrum; 
   

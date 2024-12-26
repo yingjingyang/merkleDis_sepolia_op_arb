@@ -1,5 +1,5 @@
 {
-  "name": "My Envio Indexer",
+  "name": "envio-indexer",
   "version": "0.1.0",
   "scripts": {
     "clean": "tsc --clean",
@@ -18,13 +18,11 @@
     "ts-mocha": "^10.0.0",
     "ts-node": "10.9.1",
     "typescript": "5.2.2",
+    "chai": "4.3.10",
     "mocha": "10.2.0"
   },
   "dependencies": {
-    "chai": "4.3.10",
-    "envio": "2.0.1",
-    "ethers": "6.8.0",
-    "viem": "^2.19.3"
+    "envio": "2.11.6"
   },
   "optionalDependencies": {
     "generated": "./generated"

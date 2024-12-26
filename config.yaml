@@ -9,8 +9,8 @@ field_selection:
   block_fields:
     - "parentHash"
 networks:
-  - id: 10 # Ethereum Mainnet
-    # op: 10, arbitrum: 42161, scroll: 534352, sepolia: 11155111, zksync-era: 324, base: 8453
+  - id: 10
+    # op: 10, arbitrum: 42161, scroll: 534352, sepolia: 11155111, zksync-era: 324
     start_block: 124269527 # optimism
     # start_block: 3604423 # scroll
     # start_block: 244769593 # arbitrum-one
@@ -34,4 +34,7 @@ networks:
         handler: src/EventHandlers.ts
         events:
           - event: Claimed(uint256 index,address account,uint256 amount)
-          - event: Refund(address to,uint256 refund_balance)    
+          - event: Refund(address to,uint256 refund_balance) 
+# Rollback on reorg mode currently incurs a performance hit on historical sync
+# while developing an indexer we recommend setting this to false
+rollback_on_reorg: false
