@@ -1,14 +1,22 @@
 # yaml-language-server: $schema=./node_modules/envio/evm.schema.json
 name: erc20indexer
 description: ERC-20 indexer
+field_selection:
+  transaction_fields:
+    - "hash"
+    - "transactionIndex"
+    - "gasUsed"
+  block_fields:
+    - "parentHash"
 networks:
   - id: 10 # Ethereum Mainnet
-    # op: 10, arbitrum: 42161, scroll: 534352, sepolia: 11155111, zksync-era: 324
+    # op: 10, arbitrum: 42161, scroll: 534352, sepolia: 11155111, zksync-era: 324, base: 8453
     start_block: 124269527 # optimism
     # start_block: 3604423 # scroll
     # start_block: 244769593 # arbitrum-one
     # start_block: 6535522 # sepolia
     # start_block: 28609914 # zksync-era
+    # start_block: 23993859 # base
     contracts:
       - name: MerkleDistributorFactory
         abi_file_path: abis/MerkleDistributorFactory.json
@@ -17,6 +25,7 @@ networks:
         # address: 0xA436de894D19Ff26268fCe4350b90fDbb6BB8219 # arbitrum
         # address: 0xb0B8394c1365D0caE674b3254B1e4A19aAEddc5A # sepolia
         # address: 0x7a532BD262291EeA040A3D61d7BeB3220ff06687 # zksync-era
+        # address: 0x16c06e7e335eBa330141D47cc6418D8774A9181f # base
         handler: src/EventHandlers.ts
         events:
           - event: DistributorCreated(uint256 total,bytes32 id,string name,string message,address token_address,uint256 number,uint256 duration,address creator,uint256 creation_time, address distributor)
