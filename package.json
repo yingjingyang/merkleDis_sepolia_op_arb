@@ -22,7 +22,7 @@
     "mocha": "10.2.0"
   },
   "dependencies": {
-    "envio": "2.11.6",
+    "envio": "2.21.5",
     "viem": "^2.21.57"
   },
   "optionalDependencies": {
